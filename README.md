@@ -129,7 +129,6 @@ Usando o PostgreSQL via terminal
 | GET    | `/api/locals/{id}`     | Mostra um local específico      |
 | POST   | `/api/locals`          | Cria um novo local              |
 | PUT    | `/api/locals/{id}`     | Atualiza um local existente     |
-| DELETE | `/api/locals/{id}`     | Remove um local                 |
 
 ### Testar com Postman
 
