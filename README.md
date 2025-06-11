@@ -124,7 +124,7 @@ Usando o PostgreSQL via terminal
 
 ### Testar com Postman
 
-[📂 Clique aqui para baixar a Collection](postman/CRUD-Locals-API.postman_collection.json)
+[📂 Clique aqui para baixar a Collection](postman/API%20Locals.postman_collection.json)
 
 #### Como usar:
 1. Abra o postman
