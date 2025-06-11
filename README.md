@@ -46,8 +46,10 @@ cd laravel-api-locais
 ```
 
 ### 2. Copiar o arquivo .env
-cp .env.example .env
-cp .env.docker.example .env.docker
+```bash
+    cp .env.example .env
+    cp .env.docker.example .env.docker
+```
 
     Importante: Use DB_HOST=db se estiver rodando via Docker. Use 127.0.0.1 se for rodar localmente fora do container. Então, confira os dados se estão todos ok, caso desejar pode alterar o usuário e senha (em ambos os .envs).
 
@@ -69,7 +71,7 @@ O próprio docker fará a instalação do composer e geração da key para a apl
     docker exec -it laravel_app php artisan migrate
 ```
 
-
+---
 
 ## ⚙️ Como rodar o projeto localmente
 
