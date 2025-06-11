@@ -38,30 +38,37 @@ Cada local possui os seguintes campos:
 
 ## ⚙️ Como rodar o projeto
 
-### 1️⃣ Clonar o repositório
+### 1. Clonar o repositório
 
 ```bash
 git clone https://github.com/seuusuario/laravel-api-locais.git
 cd laravel-api-locais
 ```
 
-### 2️⃣ Copiar o arquivo .env
+### 2. Copiar o arquivo .env
 cp .env.example .env
+cp .env.docker.example .env.docker
 
-    Importante: Use DB_HOST=db se estiver rodando via Docker. Use 127.0.0.1 se for rodar localmente fora do container.
+    Importante: Use DB_HOST=db se estiver rodando via Docker. Use 127.0.0.1 se for rodar localmente fora do container. Então, confira os dados se estão todos ok, caso desejar pode alterar o usuário e senha (em ambos os .envs).
 
-### 3️⃣ Subir com Docker
+### 3. Subir com Docker
 ```bash
-docker-compose up -d --build
+    docker-compose up -d --build
 ```
 
-### 4️⃣ Instalar dependências e preparar ambiente
+### 4. Adicione a APP_KEY ao .env.docker
+O próprio docker fará a instalação do composer e geração da key para a aplicação. Você só precisar copiar e adicionar ao .env.docker e rodar o compose novamente
+
+```bash
+    docker-compose up -d --build
+```
+
+### 5. Rodar as migrations do banco de dados
 
 ``` bash
-docker exec -it laravel_app composer install
-docker exec -it laravel_app php artisan key:generate
-docker exec -it laravel_app php artisan migrate
+    docker exec -it laravel_app php artisan migrate
 ```
+
 
 
 ## ⚙️ Como rodar o projeto localmente
@@ -134,6 +141,10 @@ Usando o PostgreSQL via terminal
 
 ### 1. Docker 
 
+``` bash
+docker exec -it laravel_app php artisan test
+```
+
 ### 2. Localmente
 #### 2.1 Criar o banco de teste
 ```bash
@@ -151,11 +162,4 @@ Usando o PostgreSQL via terminal
 #### 2.2. Rodar testes
 ``` bash
     php artisan test
-```
-
-
-
-
-``` bash
-docker exec -it laravel_app php artisan test
 ```
