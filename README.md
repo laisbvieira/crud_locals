@@ -10,7 +10,6 @@
 - 📃 Listar locais com ou sem filtro por nome
 - 🔍 Obter detalhes de um local
 - ✏️ Editar um local
-- 🗑️ Deletar um local
 
 ---
 
@@ -32,7 +31,7 @@ Cada local possui os seguintes campos:
 - Laravel 12
 - PostgreSQL
 - Docker + Docker Compose
-- PHP 8.2
+- PHP >= 8.3
 - Nginx
 
 ---
@@ -64,9 +63,55 @@ docker exec -it laravel_app php artisan key:generate
 docker exec -it laravel_app php artisan migrate
 ```
 
+
+## ⚙️ Como rodar o projeto localmente
+
+### ✅ Pré-requisitos
+
+- PHP >= 8.3 (incluir extensão intl)
+- Composer
+- PostgreSQL
+
+#### 1. Após clonar o repositório, instale as dependências PHP
+```bash
+    composer install
+```
+
+#### 2. Copie o arquivo do env.example
+```bash
+    cp .env.example .env
+```
+
+#### 3. Edite o arquivo .env com as credenciais do banco criado
+
+⚠️ Você precisa criar o banco de dados e o usuário com as devidas permissões 
+
+Usando o PostgreSQL via terminal
+```bash
+    sudo -u postgres psql
+    CREATE DATABASE laravel_api;
+    CREATE USER crud_user WITH PASSWORD 'senha_segura';
+    GRANT ALL PRIVILEGES ON DATABASE crud_locals TO crud_user;
+```
+
+#### 4. Gere a chave da aplicação
+```bash
+    php artisan key:generate
+```
+
+#### 5. Execute as migrations
+```bash
+    php artisan migrate
+```
+
+#### 6. Suba o servidor local
+```bash
+    php artisan serve
+```
+
+#### 7. Acesse a aplicação em: http://localhost:8000
+
 ## 📮 Endpoints
-A aplicação estará disponível em:
-http://localhost:8080
 
 | Método | Rota                   | Descrição                       |
 | ------ | ---------------------- | ------------------------------- |
@@ -77,7 +122,40 @@ http://localhost:8080
 | PUT    | `/api/locals/{id}`     | Atualiza um local existente     |
 | DELETE | `/api/locals/{id}`     | Remove um local                 |
 
+### Testar com Postman
+
+[📂 Clique aqui para baixar a Collection](postman/CRUD-Locals-API.postman_collection.json)
+
+#### Como usar:
+1. Abra o postman
+2. Importe o arquivo baixado
+
 ## 🧪 Testes
+
+### 1. Docker 
+
+### 2. Localmente
+#### 2.1 Criar o banco de teste
+```bash
+    sudo -u postgres psql
+    CREATE DATABASE laravel_test;
+    CREATE USER crud_user WITH PASSWORD 'senha_segura';
+    GRANT ALL PRIVILEGES ON DATABASE crud_locals TO crud_user;
+```
+
+#### 2.1 Criar .env.testing e altere para usar o banco de teste
+``` bash
+    cp .env .env.testing
+```
+
+#### 2.2. Rodar testes
+``` bash
+    php artisan test
+```
+
+
+
+
 ``` bash
 docker exec -it laravel_app php artisan test
 ```

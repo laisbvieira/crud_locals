@@ -14,6 +14,10 @@ services:
             - .env.docker
         networks:
             - laravel
+        command: >
+            sh -c "php artisan key:generate && php-fpm" &&
+            chmod -R 775 storage bootstrap/cache &&
+            chown -R www-data:www-data storage bootstrap/cache
 
     webserver:
         image: nginx:alpine
